@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="DCE.Views.HomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:DCE.Models"
+    xmlns:util="cl"
+    xmlns:vm="clr-namespace:DCE.ViewModels">
+
+    <Shell.TitleView>
+        <Grid>
+            <Label
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalOptions="FillAndExpand"
+                Text="Início"
+                TextColor="Black"
+                VerticalOptions="Center" />
+
+            <Button
+                Grid.Column="1"
+                Margin="0,0,13,0"
+                BackgroundColor="White"
+                Command="{Binding AddDocumentCommand}"
+                CornerRadius="50"
+                HeightRequest="40"
+                HorizontalOptions="EndAndExpand"
+                ImageSource="outline_add_circle_outline_black"
+                VerticalOptions="Center"
+                WidthRequest="40" />
+
+        </Grid>
+    </Shell.TitleView>
+
+    <ContentPage.BindingContext>
+        <vm:HomeViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+
+        <RefreshView
+            x:Name="refreshView"
+            Margin="5"
+            x:DataType="vm:HomeViewModel"
+            Command="{Binding LoadDocumentsCommand}"
+            IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+
+            <StackLayout>
+                <SearchBar
+                    x:Name="searchBar"
+                    Placeholder="Pesquisa"
+                    TextChanged="SearchBar_TextChanged" />
+
+                <CollectionView
+                    x:Name="documentsListView"
+                    ItemsSource="{Binding Documents}"
+                    SelectionMode="None"
+                    VerticalOptions="FillAndExpand">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+
+                            <SwipeView Padding="5">
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem
+                                            BackgroundColor="{StaticResource Secondary}"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:HomeViewModel}}, Path=UpdateCommand}"
+                                            CommandParameter="{Binding Source={x:Reference gridItem}, Path=BindingContext}"
+                                            IconImageSource="outline_edit_white_swipe"
+                                            Text="Editar" />
+                                        <SwipeItem
+                                            BackgroundColor="{StaticResource Primary}"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:HomeViewModel}}, Path=DeleteCommand}"
+                                            CommandParameter="{Binding Source={x:Reference gridItem}, Path=BindingContext}"
+                                            IconImageSource="outline_delete_white_swipe"
+                                            Text="Deletar" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+
+                                <Frame
+                                    Padding="10,5"
+                                    BorderColor="LightGray"
+                                    CornerRadius="5"
+                                    HasShadow="False">
+
+                                    <Grid
+                                        x:Name="gridItem"
+                                        x:DataType="model:Document"
+                                        HorizontalOptions="Fill"
+                                        RowSpacing="5"
+                                        VerticalOptions="Fill">
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="60" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Text="{Binding ContainerNumber, StringFormat='N° Container: {0}'}" />
+                                        <Label Grid.Row="1" Text="{Binding ControlNumber, StringFormat='N° Controle: {0}'}" />
+                                        <Label Grid.Row="2" HorizontalOptions="Start">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontSize="12" Text="{Binding InclusionDate, StringFormat='{0:dd/MM/yyyy}'}" />
+                                                    <Span FontSize="12" Text="{Binding InclusionDate, StringFormat=' - {0:HH:mm:ss}'}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Grid.Row="3" HorizontalOptions="Start">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontAttributes="Bold" Text="Imagens: " />
+                                                    <Span Text="{Binding PhotoCounter}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                    </Grid>
+
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:HomeViewModel}}, Path=DocumentTapped}"
+                                            CommandParameter="{Binding Source={x:Reference gridItem}, Path=BindingContext}"
+                                            NumberOfTapsRequired="1" />
+                                    </Frame.GestureRecognizers>
+
+                                </Frame>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </StackLayout>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

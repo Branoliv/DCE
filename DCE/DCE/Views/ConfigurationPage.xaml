@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DCE.Views.ConfigurationPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:DCE.ViewModels">
+
+    <ContentPage.BindingContext>
+        <vm:ConfigurationViewModel />
+    </ContentPage.BindingContext>
+
+    <Shell.TitleView>
+        <Grid>
+            <Label
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalOptions="FillAndExpand"
+                Text="Configuração"
+                TextColor="Black"
+                VerticalOptions="Center" />
+
+            <Button
+                Grid.Column="1"
+                Margin="0,0,13,0"
+                BackgroundColor="White"
+                Command="{Binding SaveConfigurationCommand}"
+                CornerRadius="50"
+                HeightRequest="50"
+                HorizontalOptions="EndAndExpand"
+                ImageSource="outline_save_black"
+                VerticalOptions="Center"
+                WidthRequest="50" />
+
+        </Grid>
+    </Shell.TitleView>
+
+    <ContentPage.Content>
+
+        <StackLayout Margin="15,25">
+
+            <StackLayout>
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+            </StackLayout>
+
+            <StackLayout>
+                <Label
+                    Margin="10,0"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Text="Usuário Logado"
+                    TextColor="Black" />
+                <Frame
+                    Margin="0"
+                    Padding="5,0,0,0"
+                    BorderColor="LightGray"
+                    CornerRadius="10"
+                    HasShadow="False">
+
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <Label
+                            Margin="5,0"
+                            FontSize="18"
+                            HorizontalOptions="Start"
+                            Text="{Binding UserLogged}"
+                            VerticalOptions="Center" />
+
+                        <Button
+                            Margin="0"
+                            Padding="0"
+                            BackgroundColor="{StaticResource Primary}"
+                            Command="{Binding GetUserCommand}"
+                            CornerRadius="5"
+                            HorizontalOptions="EndAndExpand"
+                            ImageSource="{Binding UserLoggedIcon}"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+
+            <StackLayout>
+                <Label
+                    Margin="10,0"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Text="Grupo"
+                    TextColor="Black" />
+                <Frame
+                    Margin="0"
+                    Padding="5,0,0,0"
+                    BorderColor="LightGray"
+                    CornerRadius="10"
+                    HasShadow="False">
+
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <Label
+                            Margin="5,0"
+                            FontSize="18"
+                            HorizontalOptions="Start"
+                            Text="{Binding GroupName}"
+                            VerticalOptions="Center" />
+
+                        <Button
+                            Margin="0"
+                            Padding="0"
+                            BackgroundColor="{StaticResource Primary}"
+                            Command="{Binding GetGroupCommand}"
+                            CornerRadius="5"
+                            HorizontalOptions="EndAndExpand"
+                            ImageSource="{Binding GroupNameIcon}"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+
+            <StackLayout>
+                <Label
+                    Margin="10,0"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Text="Unidade"
+                    TextColor="Black" />
+                <Frame
+                    Margin="0"
+                    Padding="5,0,0,0"
+                    BorderColor="LightGray"
+                    CornerRadius="10"
+                    HasShadow="False">
+
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <Label
+                            Margin="5,0"
+                            FontSize="18"
+                            HorizontalOptions="Start"
+                            Text="{Binding WorkUnit}"
+                            VerticalOptions="Center" />
+
+                        <Button
+                            Margin="0"
+                            Padding="0"
+                            BackgroundColor="{StaticResource Primary}"
+                            Command="{Binding GetGroupFoldersCommand}"
+                            CornerRadius="5"
+                            HorizontalOptions="EndAndExpand"
+                            ImageSource="{Binding WorkUnitIcon}"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+
+            <Button
+                Margin="20"
+                BackgroundColor="{StaticResource Primary}"
+                Command="{Binding LogoutCommand}"
+                CornerRadius="5"
+                HorizontalOptions="FillAndExpand"
+                Text="Logout"
+                TextColor="White" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

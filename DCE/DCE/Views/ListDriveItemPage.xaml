@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DCE.Views.ListDriveItemPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:DCE.Models"
+    xmlns:vm="clr-namespace:DCE.ViewModels">
+
+    <ContentPage.BindingContext>
+        <vm:ListDriveItemViewModel />
+    </ContentPage.BindingContext>
+
+    <Shell.TitleView>
+        <Grid>
+            <Label
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalOptions="StartAndExpand"
+                Text="Unidades"
+                TextColor="Black"
+                VerticalOptions="CenterAndExpand" />
+        </Grid>
+    </Shell.TitleView>
+
+    <ContentPage.Content>
+
+        <RefreshView
+            x:Name="refreshView"
+            Margin="10"
+            x:DataType="vm:ListDriveItemViewModel"
+            Command="{Binding LoadCommand}"
+            IsRefreshing="{Binding IsBusy}">
+
+            <CollectionView
+                x:Name="folderCollectoinView"
+                ItemsSource="{Binding WorkUnitFolders}"
+                SelectionMode="None"
+                VerticalOptions="FillAndExpand">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Frame
+                                x:Name="folderFrame"
+                                Margin="5"
+                                x:DataType="model:WorkUnitFolder"
+                                BorderColor="LightGray"
+                                HasShadow="False">
+                                <Label Text="{Binding FolderName}" />
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ListDriveItemViewModel}}, Path=FolderTapped}"
+                                        CommandParameter="{Binding Source={x:Reference folderFrame}, Path=BindingContext}"
+                                        NumberOfTapsRequired="1" />
+                                </Frame.GestureRecognizers>
+
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

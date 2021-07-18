@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DCE.Views.NewDocumentPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:DCE.Converters"
+    xmlns:vm="clr-namespace:DCE.ViewModels"
+    Title="Novo Documento">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ImageFileToImageSourceConverter x:Key="ImageFileToImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <vm:NewDocumentViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+
+        <StackLayout Margin="5,10" Padding="0">
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+
+            <CollectionView ItemsSource="{Binding Photos}">
+
+                <CollectionView.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Button
+                            Margin="5"
+                            BackgroundColor="{StaticResource Primary}"
+                            Command="{Binding CapturePhotoCommand}"
+                            CornerRadius="5"
+                            HeightRequest="40"
+                            HorizontalOptions="Start"
+                            ImageSource="outline_add_a_photo_white"
+                            IsEnabled="{Binding IsEnable}"
+                            WidthRequest="60" />
+
+                        <Button
+                            Grid.Column="1"
+                            Margin="5"
+                            BackgroundColor="{StaticResource Primary}"
+                            Command="{Binding TakeGalleriaPhotoCommand}"
+                            CornerRadius="5"
+                            HeightRequest="40"
+                            HorizontalOptions="Start"
+                            ImageSource="outline_add_photo_alternate_white"
+                            IsEnabled="{Binding IsEnable}"
+                            WidthRequest="60" />
+
+                        <Button
+                            Grid.Column="2"
+                            Margin="5"
+                            BackgroundColor="{StaticResource Primary}"
+                            Command="{Binding ResetNewDocumentCommand}"
+                            CornerRadius="5"
+                            HeightRequest="40"
+                            HorizontalOptions="Start"
+                            ImageSource="outline_delete_white"
+                            IsEnabled="{Binding IsEnable}"
+                            WidthRequest="60" />
+
+                        <Button
+                            Grid.Column="3"
+                            Margin="5"
+                            BackgroundColor="{StaticResource Primary}"
+                            Command="{Binding SaveDocumentCommand}"
+                            CornerRadius="5"
+                            HeightRequest="40"
+                            HorizontalOptions="EndAndExpand"
+                            ImageSource="outline_save_white"
+                            IsEnabled="{Binding IsEnable}"
+                            WidthRequest="60" />
+
+                        <Frame
+                            Grid.Row="1"
+                            Grid.ColumnSpan="4"
+                            Margin="0,5"
+                            Padding="10"
+                            BorderColor="LightGray"
+                            CornerRadius="5"
+                            HasShadow="False">
+
+                            <StackLayout>
+                                <StackLayout IsEnabled="{Binding EnableEntry}">
+                                    <Label
+                                        Margin="5"
+                                        HorizontalOptions="Start"
+                                        Text="Número Container:"
+                                        VerticalOptions="Start" />
+
+                                    <Entry
+                                        CharacterSpacing="2"
+                                        ClearButtonVisibility="WhileEditing"
+                                        FontSize="14"
+                                        ReturnType="Next"
+                                        Text="{Binding ContainerNumber}"
+                                        TextTransform="Uppercase">
+
+                                        <Entry.Keyboard>
+                                            <Keyboard x:FactoryMethod="Create">
+                                                <x:Arguments>
+                                                    <KeyboardFlags>CapitalizeCharacter</KeyboardFlags>
+                                                </x:Arguments>
+                                            </Keyboard>
+                                        </Entry.Keyboard>
+                                    </Entry>
+
+                                    <Label
+                                        Margin="5"
+                                        HorizontalOptions="Start"
+                                        Text="Número Controle:"
+                                        VerticalOptions="Start" />
+
+                                    <Entry
+                                        CharacterSpacing="2"
+                                        ClearButtonVisibility="WhileEditing"
+                                        FontSize="14"
+                                        Keyboard="Numeric"
+                                        ReturnType="Next"
+                                        Text="{Binding ControlNumber}"
+                                        TextTransform="Uppercase" />
+
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal">
+
+                                    <CheckBox IsChecked="{Binding FinishedContainerStuffing, Mode=TwoWay}" VerticalOptions="Center" />
+
+                                    <Label Text="Estufagem finalizada" VerticalOptions="Center" />
+
+                                </StackLayout>
+                            </StackLayout>
+
+                        </Frame>
+
+                        <Label
+                            Grid.Row="2"
+                            Grid.ColumnSpan="4"
+                            Margin="10,3"
+                            FontSize="18"
+                            Text="{Binding PhotoCounter, StringFormat='Imagens: {0}/12'}" />
+                    </Grid>
+                </CollectionView.Header>
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="3" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="5" HorizontalOptions="CenterAndExpand">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Frame
+                                Padding="0"
+                                CornerRadius="5"
+                                HeightRequest="150"
+                                HorizontalOptions="CenterAndExpand"
+                                WidthRequest="112">
+
+                                <Image
+                                    Aspect="AspectFill"
+                                    HorizontalOptions="Fill"
+                                    Source="{Binding PathThumbnail, Converter={StaticResource ImageFileToImageSourceConverter}}"
+                                    VerticalOptions="Fill">
+
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NewDocumentViewModel}}, Path=ImageViewCommand}"
+                                            CommandParameter="{Binding .}"
+                                            NumberOfTapsRequired="1" />
+                                        <TapGestureRecognizer
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NewDocumentViewModel}}, Path=DeleteImageCommand}"
+                                            CommandParameter="{Binding .}"
+                                            NumberOfTapsRequired="2" />
+                                    </Image.GestureRecognizers>
+
+                                </Image>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
