@@ -32,3 +32,33 @@
 
    - [Sharedpoint](https://www.microsoft.com/pt-br/microsoft-365/sharepoint/collaboration)
 
+
+# Como executar o projeto
+
+## App
+
+```bash
+# clonar repositório
+git clone https://github.com/Branoliv/DCE/DCE
+```
+
+## Criar pasta com nome Security em:
+~ DCE/
+## Criar classe statica com nome OAuthSettings em :
+~ DCE/Security/
+
+## Incluir o código:
+
+```C#
+
+ public static class OAuthSettings
+    {
+        public static string Scopes = "{socopes}";
+        public static string ApplicationId = "{}";
+        public static string RedirectUri = "{}";
+        public static string TenantId = "{}"; //Caso o acesso seja realizado apenas por usuários do locatário.
+    }
+    
+```
+
+
