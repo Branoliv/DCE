@@ -42,12 +42,12 @@
 git clone https://github.com/Branoliv/DCE/DCE
 ```
 
-## Criar pasta com nome Security em:
+### Criar pasta com nome Security em:
 ~ DCE/
-## Criar classe statica com nome OAuthSettings em :
+### Criar classe statica com nome OAuthSettings em :
 ~ DCE/Security/
 
-## Incluir o código:
+### Incluir o código:
 
 ```C#
 
@@ -61,4 +61,17 @@ git clone https://github.com/Branoliv/DCE/DCE
     
 ```
 
+### Criar arquivo XML com nome "secrets" em:
+~DCE.Android/Resources/values
+
+### Incluir o código:
+
+```xml
+<resources>
+  <string name="application_id">{}</string>
+  <string name="redirect_uri">{}</string>
+  <string name="scheme_uri">{}</string>
+</resources>
+
+```
 
