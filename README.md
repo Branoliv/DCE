@@ -10,8 +10,6 @@
 
 ## Layout App
 
-[Todas imagens](https://github.com/Branoliv/DCE/blob/master/Assets/App)
-
 <a href="https://github.com/Branoliv/DCE/blob/master/Assets/App/">Todas imagens</a>
 
 ## Layout Docs Sharedpoint
