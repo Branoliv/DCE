@@ -42,9 +42,9 @@
 git clone https://github.com/Branoliv/DCE/DCE
 ```
 
-### Criar pasta com nome Security em:
+### Criar pasta com nome "Security" em:
 ~ DCE/
-### Criar classe statica com nome OAuthSettings em :
+### Criar classe statica com nome "OAuthSettings" em :
 ~ DCE/Security/
 
 ### Incluir o código:
