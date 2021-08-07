@@ -53,10 +53,10 @@ git clone https://github.com/Branoliv/DCE/DCE
 
  public static class OAuthSettings
     {
-        public static string Scopes = "{socopes}";
-        public static string ApplicationId = "{}";
-        public static string RedirectUri = "{}";
-        public static string TenantId = "{}"; //Caso o acesso seja realizado apenas por usuários do locatário.
+        public static string Scopes = "{SCOPES}"; // Os escopos devem ser serparados por espaço
+        public static string ApplicationId = "{APPLICATION_ID}";
+        public static string RedirectUri = "{REDIRECT_URI}";
+        public static string TenantId = "{TENANT_ID}"; //Caso o acesso seja realizado apenas por usuários do locatário.
     }
     
 ```
@@ -68,10 +68,26 @@ git clone https://github.com/Branoliv/DCE/DCE
 
 ```xml
 <resources>
-  <string name="application_id">{}</string>
-  <string name="redirect_uri">{}</string>
-  <string name="scheme_uri">{}</string>
+  <string name="application_id">{APPLICATION_ID}</string>
+  <string name="redirect_uri">{REDIRECT_URI}</string>
+  <string name="scheme_uri">{SCHEME_URI}</string>
 </resources>
 
 ```
 
+### Registar o aplicativo no Azure AD conforme documentação:
+
+- [Documentação Active Directory](https://docs.microsoft.com/pt-br/azure/active-directory/develop/quickstart-register-app)
+- [Acessar Microsfot Graph](https://docs.microsoft.com/pt-br/graph/tutorials/xamarin)
+
+
+## Sharedpoint
+
+### Criar site com nome DCE
+<p align="justify">Dentro da estrutura de documentos do site deverão ser criadas as pastas quais serão configuradas no app para receber as fotos</p>
+
+# Autor
+
+Cleber Brandão de Oliveira
+
+- [Linkedin](https://www.linkedin.com/in/cleber-brand%C3%A3o-3a631a133)
