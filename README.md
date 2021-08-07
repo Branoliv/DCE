@@ -10,4 +10,25 @@
 
 ## Layout App
 
-<a href="https://github.com/Branoliv/DCE/blob/master/Assets">Todas imagens</a>
+<a href="https://github.com/Branoliv/DCE/blob/master/Assets/App">Todas imagens</a>
+
+## Layout Docs Sharedpoint
+
+<a href="https://github.com/Branoliv/DCE/blob/master/Assets/Sharedpoint">Todas imagens</a>
+
+# Tecnologias utilizadas
+## App :books:
+     
+   - [Microsoft .Graph](https://www.nuget.org/packages/Microsoft.Graph/3.21.0): versão 3.21.0
+   - [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client/): versão 4.24.0
+   - [TimeZoneConverter](https://github.com/mattjohnsonpint/TimeZoneConverter): versão 3.3.0
+   - [Xam.Plugin.Media](https://github.com/jamesmontemagno/MediaPlugin): versão 5.0.1
+   - [Xamarin.Forms](https://github.com/xamarin/Xamarin.Forms): versão 5.0.0.2012
+   - [Xamarin.Essentials](https://github.com/xamarin/Essentials): versão 1.6.1
+   - [Microsoft.EntityFrameworkCore.Sqlite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite/): versão 3.1.13
+   - [Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools): versão 3.1.13
+
+## Sharedpoint :books:
+
+   - [Sharedpoint](https://www.microsoft.com/pt-br/microsoft-365/sharepoint/collaboration)
+
