@@ -19,7 +19,7 @@
 # Tecnologias utilizadas
 ## App :books:
      
-   - [Microsoft .Graph](https://www.nuget.org/packages/Microsoft.Graph/3.21.0): versão 3.21.0
+   - [Microsoft .Graph](https://github.com/microsoftgraph/msgraph-sdk-dotnet): versão 3.21.0
    - [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client/): versão 4.24.0
    - [TimeZoneConverter](https://github.com/mattjohnsonpint/TimeZoneConverter): versão 3.3.0
    - [Xam.Plugin.Media](https://github.com/jamesmontemagno/MediaPlugin): versão 5.0.1
