@@ -78,7 +78,7 @@ git clone https://github.com/Branoliv/DCE/DCE
 ### Registar o aplicativo no Azure AD conforme documentação:
 
 - [Documentação Active Directory](https://docs.microsoft.com/pt-br/azure/active-directory/develop/quickstart-register-app)
-- [Acessar Microsfot Graph](https://docs.microsoft.com/pt-br/graph/tutorials/xamarin)
+- [Acessar Microsoft Graph](https://docs.microsoft.com/pt-br/graph/tutorials/xamarin)
 
 
 ## Sharedpoint
